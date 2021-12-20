@@ -23,6 +23,7 @@
  * 
 */
 const sections = [...document.querySelectorAll("section")];
+const navBar = document.getElementById("navbar__list");
 console.log(sections);
 
 /**
@@ -39,7 +40,11 @@ console.log(sections);
 */
 
 // build the nav
-
+document.addEventListener('DOMContentLoaded', () => {
+    sections.forEach((section, index) =>{
+        navBar.innerHTML += `<li><a href=#${section.id} data-nav=${section.id} class="menu__link">section ${index+1}</a></li>`;
+    })
+});
 
 // Add class 'active' to section when near top of viewport
 onscroll = () => {
