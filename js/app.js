@@ -22,6 +22,7 @@
  * Define Global Variables
  * 
 */
+const main = document.getElementsByTagName("main")[0];
 const sections = [...document.querySelectorAll("section")];
 const navBar = document.getElementById("navbar__list");
 console.log(sections);
@@ -40,11 +41,10 @@ console.log(sections);
 */
 
 // build the nav
-document.addEventListener('DOMContentLoaded', () => {
-    sections.forEach((section, index) =>{
-        navBar.innerHTML += `<li><a href=#${section.id} data-nav=${section.id} class="menu__link">section ${index+1}</a></li>`;
-    })
-});
+sections.forEach((section, index) =>{
+    navBar.innerHTML += `<li><a bar-nav=${section.id} class="menu__link">section ${index+1}</a></li>`;
+})
+
 
 // Add class 'active' to section when near top of viewport
 onscroll = () => {
@@ -59,7 +59,13 @@ onscroll = () => {
 };
 
 // Scroll to anchor ID using scrollTO event
-
+const sectionLinks = document.querySelectorAll(".menu__link");
+sectionLinks.forEach(link =>{
+    const elem = document.getElementById(link.getAttribute("bar-nav"));
+    link.addEventListener("click", ()=>{
+        elem.scrollIntoView({behavior: "smooth"});
+    })
+})
 
 /**
  * End Main Functions
