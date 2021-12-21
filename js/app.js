@@ -22,10 +22,12 @@
  * Define Global Variables
  * 
 */
-const main = document.getElementsByTagName("main")[0];
+
 const sections = [...document.querySelectorAll("section")];
 const navBar = document.getElementById("navbar__list");
-console.log(sections);
+const header = document.getElementsByTagName("header")[0];
+
+let lastScroll = window.scrollY;
 
 /**
  * End Global Variables
@@ -56,6 +58,14 @@ onscroll = () => {
             section.classList.remove("your-active-class");
         }
     });
+    if(lastScroll < window.scrollY){
+        header.style.transform=`translateY(-${header.offsetHeight}px)`;
+    }
+    else{
+        header.style.transform=null;
+        console.log(header.offsetHeight);
+    }
+    lastScroll = window.scrollY;
 };
 
 // Scroll to anchor ID using scrollTO event
@@ -66,6 +76,8 @@ sectionLinks.forEach(link =>{
         elem.scrollIntoView({behavior: "smooth"});
     })
 })
+
+
 
 /**
  * End Main Functions

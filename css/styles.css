@@ -95,6 +95,7 @@ section {
     top: 0;
     width: 100%;
     z-index: 5;
+    transition: transform 0.2s;
 }
 
 /* Footer Styles */
