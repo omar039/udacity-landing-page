@@ -63,7 +63,12 @@ onscroll = () => {
     }
     else{
         header.style.transform=null;
-        console.log(header.offsetHeight);
+    }
+    if(lastScroll < document.body.offsetHeight/8){
+        document.getElementById("buttonScrollTop").style.visibility="hidden";
+    }
+    else{
+        document.getElementById("buttonScrollTop").style.visibility="visible";
     }
     lastScroll = window.scrollY;
 };
@@ -75,6 +80,10 @@ sectionLinks.forEach(link =>{
     link.addEventListener("click", ()=>{
         elem.scrollIntoView({behavior: "smooth"});
     })
+})
+
+document.getElementById("buttonScrollTop").addEventListener("click", ()=>{
+    window.scrollTo({ top: 0, behavior: 'smooth' })
 })
 
 

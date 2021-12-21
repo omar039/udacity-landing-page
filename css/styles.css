@@ -45,6 +45,22 @@ p {
     color: #eee;
 }
 
+#buttonScrollTop{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 10%;
+    height: 10%;
+    min-width: 30px;
+    max-width:50px;
+    min-height: 30px;
+    max-height:50px;
+    border-radius: 50%;
+    border: none;
+    visibility: hidden;
+    transition: visibility 0s, opacity 0.5s linear
+}
+
 /* ---- Layout Rules ---- */
 main {
     margin: 10vh 1em 10vh;
