@@ -43,12 +43,14 @@ let lastScroll = window.scrollY;
 */
 
 // build the nav
+const navListFrag = document.createDocumentFragment();
 sections.forEach((section, index) =>{
     const item = document.createElement("li");
     item.innerHTML = `<a bar-nav=${section.id} class="menu__link">section ${index+1}</a>`;
     item.style.cursor= "pointer";
-    navBar.appendChild(item);
+    navListFrag.appendChild(item);
 })
+navBar.appendChild(navListFrag);
 
 
 // Add class 'active' to section when near top of viewport
