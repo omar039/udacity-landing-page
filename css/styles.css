@@ -58,7 +58,8 @@ p {
     border-radius: 50%;
     border: none;
     visibility: hidden;
-    transition: visibility 0s, opacity 0.5s linear
+    transition: visibility 0s, opacity 0.5s linear;
+    cursor: pointer;
 }
 
 /* ---- Layout Rules ---- */

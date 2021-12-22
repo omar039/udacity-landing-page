@@ -23,9 +23,9 @@
  * 
 */
 
-const sections = [...document.querySelectorAll("section")];
+const sections = document.querySelectorAll("section");
 const navBar = document.getElementById("navbar__list");
-const header = document.getElementsByTagName("header")[0];
+
 
 let lastScroll = window.scrollY;
 
@@ -44,12 +44,15 @@ let lastScroll = window.scrollY;
 
 // build the nav
 sections.forEach((section, index) =>{
-    navBar.innerHTML += `<li><a bar-nav=${section.id} class="menu__link">section ${index+1}</a></li>`;
+    const item = document.createElement("li");
+    item.innerHTML = `<a bar-nav=${section.id} class="menu__link">section ${index+1}</a>`;
+    item.style.cursor= "pointer";
+    navBar.appendChild(item);
 })
 
 
 // Add class 'active' to section when near top of viewport
-onscroll = () => {
+const addActiveClass = () => {
     sections.forEach(section =>{
         if(Math.abs(section.getBoundingClientRect().top) < section.getBoundingClientRect().height/2){
             section.classList.add("your-active-class");
@@ -57,21 +60,30 @@ onscroll = () => {
         else{
             section.classList.remove("your-active-class");
         }
-    });
+    })
+};
+
+// hide navbar on scroll down and show on scroll up
+const hideNavbar = () => {
+    const header = document.querySelector(".page__header");
     if(lastScroll < window.scrollY){
         header.style.transform=`translateY(-${header.offsetHeight}px)`;
     }
     else{
         header.style.transform=null;
     }
+};
+
+// show scroll to top button when user scroll down
+const showScrollTopBtn = () => {
     if(lastScroll < document.body.offsetHeight/8){
         document.getElementById("buttonScrollTop").style.visibility="hidden";
     }
     else{
         document.getElementById("buttonScrollTop").style.visibility="visible";
     }
-    lastScroll = window.scrollY;
-};
+}
+
 
 // Scroll to anchor ID using scrollTO event
 const sectionLinks = document.querySelectorAll(".menu__link");
@@ -82,7 +94,8 @@ sectionLinks.forEach(link =>{
     })
 })
 
-document.getElementById("buttonScrollTop").addEventListener("click", ()=>{
+const scrollTopBtn = document.getElementById("buttonScrollTop");
+scrollTopBtn.addEventListener("click", ()=>{
     window.scrollTo({ top: 0, behavior: 'smooth' })
 })
 
@@ -99,5 +112,10 @@ document.getElementById("buttonScrollTop").addEventListener("click", ()=>{
 // Scroll to section on link click
 
 // Set sections as active
-
+onscroll = () => {
+    addActiveClass();
+    hideNavbar();
+    showScrollTopBtn();
+    lastScroll = window.scrollY;
+};
 
