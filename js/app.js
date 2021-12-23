@@ -46,7 +46,7 @@ let lastScroll = window.scrollY;
 const navListFrag = document.createDocumentFragment();
 sections.forEach((section, index) =>{
     const item = document.createElement("li");
-    item.innerHTML = `<a bar-nav=${section.id} class="menu__link">section ${index+1}</a>`;
+    item.innerHTML = `<a href=#${section.id} bar-nav=${section.id} class="menu__link">section ${index+1}</a>`;
     item.style.cursor= "pointer";
     navListFrag.appendChild(item);
 })
@@ -91,7 +91,8 @@ const showScrollTopBtn = () => {
 const sectionLinks = document.querySelectorAll(".menu__link");
 sectionLinks.forEach(link =>{
     const elem = document.getElementById(link.getAttribute("bar-nav"));
-    link.addEventListener("click", ()=>{
+    link.addEventListener("click", e =>{
+        e.preventDefault();
         elem.scrollIntoView({behavior: "smooth"});
     })
 })
