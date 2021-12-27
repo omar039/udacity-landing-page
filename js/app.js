@@ -25,6 +25,7 @@
 
 const sections = document.querySelectorAll("section");
 const navBar = document.getElementById("navbar__list");
+const scrollTopBtn = document.getElementById("buttonScrollTop");
 
 
 let lastScroll = window.scrollY;
@@ -53,14 +54,17 @@ sections.forEach((section, index) =>{
 navBar.appendChild(navListFrag);
 
 
-// Add class 'active' to section when near top of viewport
+// Add class 'active' to section and link when near top of viewport
 const addActiveClass = () => {
-    sections.forEach(section =>{
+    const links = navBar.getElementsByClassName("menu__link");
+    sections.forEach((section, index) =>{
         if(Math.abs(section.getBoundingClientRect().top) < section.getBoundingClientRect().height/2){
             section.classList.add("your-active-class");
+            links[index].classList.add("active__link");
         }
         else{
             section.classList.remove("your-active-class");
+            links[index].classList.remove("active__link");
         }
     })
 };
@@ -97,7 +101,7 @@ sectionLinks.forEach(link =>{
     })
 })
 
-const scrollTopBtn = document.getElementById("buttonScrollTop");
+
 scrollTopBtn.addEventListener("click", ()=>{
     window.scrollTo({ top: 0, behavior: 'smooth' })
 })
@@ -117,7 +121,7 @@ scrollTopBtn.addEventListener("click", ()=>{
 // Set sections as active
 onscroll = () => {
     addActiveClass();
-    hideNavbar();
+    //hideNavbar();
     showScrollTopBtn();
     lastScroll = window.scrollY;
 };
