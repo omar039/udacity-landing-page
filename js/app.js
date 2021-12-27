@@ -121,7 +121,6 @@ scrollTopBtn.addEventListener("click", ()=>{
 // Set sections as active
 onscroll = () => {
     addActiveClass();
-    //hideNavbar();
     showScrollTopBtn();
     lastScroll = window.scrollY;
 };
